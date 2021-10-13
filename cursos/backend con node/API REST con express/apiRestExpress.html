@@ -242,7 +242,69 @@ PATCH - HTTP | MDN
      <img style=" width: 350px" src="https://i.pinimg.com/originals/88/59/a7/8859a76508f257267c9d5dd191de7d30.jpg" alt="Resultado al ingresar un endpoind poniendo como respuesta en el endpoint un saludo a pinteREST-API">
     <br>
     <img src="https://i.pinimg.com/originals/26/0d/aa/260daa96bcd80a83139d44d184a72b1f.jpg" alt="">
+    <hr>
+    <h2>
+       GET: Query Params(Parametros Query)
+    </h2>
+    <p><img style="width:500px" src="https://i.pinimg.com/originals/d3/1c/54/d31c540819bdc61e055473c39db68b33.jpg" alt=""></p>
+    <p>Los Parametros Tipo Query que normalmente son opcionales podemos hacer cosas como por ejemplo:</p>
+    <ol>
+        <li>
+            paginar:    
+    <p> en la pagina numero 1 tenemos tales productos y cierta cantidad</p>
+        </li>
+        <li>
+            Paginacion Limit&Offset:
+            <p>
+            Otra estrategia de Paginacion
+            </p>
+        </li>
+        <li>
+            Filtrar:
+            <p>por ejemplo quiero todos los productos que se vendan en el territorio de los Estados Unidos</p>
+        </li>
+        <li>
+            Doble Filtro:
+            <p> Quiero todos los productos que se vendan en tal region pero de esta marca en especifico</p>
+        </li>
+    </ol>
+    <p>
+        <strong>pero.. ¿COMO recogemos paramtros tipo Query?</strong>
     </p>
+    ? -> usamos al momento de recoger parametros tipo Query acompañados de su nombre y su definicion
+    <img src="https://i.pinimg.com/originals/ab/b2/ad/abb2ad78d3975a7db6d90d26d3360378.jpg" alt="ejemplo de como recogemos parametros tipo Query">
+    <hr>
+    <h3>Poblar con Data FAke</h3>
+    <p>Vamos a poblar de informacion más consisa para nuestros productos, vamos a instalar una libreria para generar data fake</p>
+    <p>Vamos a la consola y vamos a ejecutar el siguiente comando para instalar Faker:</p>
+    <ol>
+        <li>
+            <p class="comando">
+                npm i faker
+            </p>
+        </li>
+        <li>
+            <p>Luego importamos la libreria escribiendo el codigo en el archivo index.js</p>
+            <p class="code">
+                const faker = require('faker');
+            </p>
+        </li>
+        <li>
+            <p>Luego en el codigo creamos un array de productos y un for para que se cree de forma automatica y dinamica los productos, con las instrucciones para generar nombre aleatorio etc.</p>
+            <img src="https://i.pinimg.com/originals/79/51/73/795173a53ed340e8aad81247e1ab29c6.jpg" alt="poblando catalogo con datos fake utilizando faker en un servidor con node">
+        </li>
+        <li>
+            <p>
+                Ahora vamos a agregarle un limite, además vamos a capturar los parametros con un Query llamado size, en caso de no enviarle tamaño que el limite sea de 10 productos, agregando el siguiente codigo:.
+            </p>
+            <p class="code">
+                const { size } = req.query; <br>
+                const limit = size || 10; <br>
+                for (let index = 0; index < limit; index++)...
+            </p>
+        </li>
+    </ol>
+</p>
 </main>
 </body>
 </html>
