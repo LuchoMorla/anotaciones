@@ -14,7 +14,7 @@
     </h1>
     <p><a href="https://platzi.com/clases/backend-nodejs/">Link del curso </a></p>
     <p>
-        <a href="">link del repositorio</a>
+        <a href="https://luchomorla.github.io/anotaciones/cursos/backend%20con%20node/API%20REST%20con%20express/apiRestExpress.html">link del repositorio</a>
     </p>
     <h2>
         Configuracion del Entorno
@@ -304,6 +304,112 @@ PATCH - HTTP | MDN
             </p>
         </li>
     </ol>
+    <p>
+        <h5>Errores:</h5>
+        <p>
+            Hay veces que creamos rutas o routings o url especificas en conjunto de rutas dinamicas, hay veces que al ingresar a una ruta especifica me devuelve como una ruta dinamica, ese es un error muy común y la unica forma de solucionarlo es escribiendo primero las rutas especificas y despues las rutas dinámicas.
+            <img src="https://i.pinimg.com/564x/89/f2/30/89f230aa89ea6575f7dd4d002a38d258.jpg " alt="hay que poner primero las direcciones especificas y luego las dinamicas">
+            <p>hay que poner primero las direcciones especificas y luego las dinamicas</p>
+        </p>
+    </p>
+    <hr>
+    <h2>Single Responsability Principle(Separacion de responsabilidades con expressrouter)</h2>
+    <p>
+        <strong>El principio de una sola responsabilidad</strong> se trata de que cada artefacto, cada pieza de codigo debe tener una sola responsabilidad.
+    </p>
+    <p>
+        El principio de una sola responsabilidad se puede aplicar para <strong>clases, archivos y metodos.</strong>.EJM:
+    </p>
+    <p>
+        Un metodo llamado sumar solo deberia sumar, si se quiere hacer otras cosas como restar solo deberian restar.
+    </p>
+    <p>
+        Esto se ve facil en los metodos, pero este principio es algo que escala también a los archivos, por ejemplo para el routing deberia dividirse los endpoints por dominio especifico por cada archivo y tener un solo archivo que se encargue de definir todas las rutas de cada uno de un endpint en especifico, separando las responsabilidades. Por Ejemplo:
+    </p>
+    <p>
+        /products -> tiene todo el funcionamiento de los productos.
+        /categorias -> tiene todo el routing de las categorias.
+    </p>
+    <h3>
+        ¿Como se lo ejecuta en NodeJS?
+    </h3>
+    <ol>
+        <li>
+            <p>
+                Creamos una carpeta especifica para las rutas.
+            </p>
+            <p>
+                En el home de nuestro proyecto desde la consola podemos ejecutar el comando mkdir Routes y luego creamos el archivo index.js en esa carpeta
+            </p>
+        </li>
+        <li>
+            <p>
+                Vamos a empezar por crear la carpeta de productos:
+            </p>
+            <p>
+                Podemos llamarlo de las formas o normas productos.js, productosRouter.js o productos.router.js y desde la consola podemos ejecutar el comando touch "nombre".
+                Es importante que te decidas por una sola norma al momento de llamar tus archivos.
+            </p>
+        </li>
+        <li>
+            <p>
+                Como en nuestro proyecto habíamos estado trabajando de forma incorrecta, vamos a empezar a hacerlo de la forma correcta, comenzando por cortar y pegar todas las funciones referentes 
+                a productos. Y de igual manera con todos las otras funciones de las otras entidades o rutas, como el de usuarios, categorias, etc. 
+            </p>
+        </li>
+        <li>
+            <p>
+                ya pegadas las funciones, llamamos a las dependecias y ademas creamos una nueva constante que acceda el metodo router de express.
+            </p>
+            <img src="https://i.pinimg.com/564x/17/a6/d1/17a6d12a7cccb1104f80cf0c5471d251.jpg" alt="">
+        </li>
+        <li>
+            <p>
+                Ahora eliminamos de las rutas de los productos el endpoint productos, dejando solo las rutas especificas o las dinamicas.
+            </p>
+            <p>
+                Ademas tambien reemplazamos app por router.
+            </p>
+        </li>
+        <li>
+            Finalmente dejamos al final a porductos como un modulo exportable con el codigo:
+            <p class="code">
+                module.exports = router;
+            </p>
+        </li>
+        <li>
+            Ahora necesitamos configurar las rutas, dentro de la carpeta routes creamos un nuevo archivo index.js para que cumpla esta funcion.
+        </li>
+        <li>
+            <p> importamos productosRouter y establecemos el endpoint y especificamos la ruta, finalizando por exportar el la funcion que creamos para establecer el endpoint, la vamos a llamar routerApi.
+          </p>  <img src="https://i.pinimg.com/originals/73/8f/21/738f210a71c6f148a4f5d1bdf2d82f7a.jpg" alt="">
+          <p>
+              Y lo mismo debemos hacer con el resto de archivos, entidades o endpoints, todos iran dentro de la funcion routerApi
+          </p>
+        </li>
+        <li>
+            Ahora configuramos el archivo index.js del home de nuestro proyecto.
+            <ol>
+                <li>
+                    importamos el archivo index.js de la carpeta routes llamada romo routerApi, en este caso no es necesario que especifiquemos el archivo index.js por que ya busca por defecto a este archivo.
+                </li>
+                <li>
+                    finalmente llamamos  a la funcion routerApi, enviandole como parametro a express
+                    <p class="code"> routerApi(app);</p>
+                </li>
+            </ol>
+            <li>
+                Listo termiamos de modularizar nuestra aplicacion(Aplicamos la programacion orientada a objetos)
+                <p><img src="https://i.pinimg.com/564x/6b/cf/f4/6bcff45ef082a352dc9f3f41f8e4d413.jpg" alt=""></p>
+            </li>
+        </li>
+    </ol>
+    <p>
+        <hr>
+    <div>
+        
+    </div>
+    </p>
 </p>
 </main>
 </body>
