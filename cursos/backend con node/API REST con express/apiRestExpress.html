@@ -7,9 +7,14 @@
     <title>API Rest con Express</title>
 </head>
 <body>
+    <main>
     <h1>
         Curso de Backend con NodeJs: API REST con express
     </h1>
+    <p><a href="https://platzi.com/clases/backend-nodejs/">Link del curso </a></p>
+    <p>
+        <a href="">link del repositorio</a>
+    </p>
     <h2>
         Configuracion del Entorno
     </h2>
@@ -22,7 +27,205 @@
             </p>
             <p class="comando"> code .</p>
             </li>
+            <li>
+                <p>
+                    instalamos npm por defecto(por esta vez) usando -y
+                </p>
+                <p class="comando"> npm init -y</p>
+            </li>
         </ol>
+        Luego continuamos dentro de visual estudio code creando las carpetas: .gitignore, .editorconfig, .eslintrc.json(para crear las reglas de buenas practicas), nuestro archivo de configuracion index.js y finalmente los configuramos.
+        <ul>
+            <li>
+        <h3>
+            gitignore.io
+        </h3>
+        <ol>
+            <li>
+        <p>
+            comenzamos con la configuracion de este archivo, nos es recomendado entrar a <a href="https://www.toptal.com/developers/gitignore">gitignore.io</a>
+            en la barra escogemos los entornos y los sistemas operativos para evitar traquear ciertos archivos del sistema, en este caso escribimos: Node Windows Mac Linux. ->(click en) crear
+        </p>
+    </li>
+    <li>
+        <p>
+            copiamos y pegamos en nuestro archivo la configuracion que nos da la pagina.
+        </p>
+    </li>
+    </ol>
+    </li>
+    <li>
+        <h3>
+            .editorconfig
+        </h3>
+        <ol>
+            Nos es recomendado para que todos los editores tengan una misma configuracion del editor
+            <li>
+                <p>
+                    instalamos un plugin para que nos funcione este archivo, el plugin de visual studio code es: <strong>EditorConfig for VS Code</strong>
+                </p>
+            </li>
+            <li>
+                <p>
+                    Copiamos y pegamos la configuracion que nos dio el profesor:
+                </p>
+                <p class="code">
+                    # Editor configuration, see https://editorconfig.org
+root = true
+
+[*]
+charset = utf-8
+indent_style = space
+indent_size = 2
+insert_final_newline = true
+trim_trailing_whitespace = true
+
+[*.js]
+quote_type = single
+
+[*.md]
+max_line_length = off
+trim_trailing_whitespace = false
+                </p>
+            </li>
+            </ol>
+<li>
+                <h3>
+                    .eslintrc.json
+                </h3>
+                <p>
+                    Copiamos y pegamos la siguiente configuracion para nuestro eslinter y buenas practicas:
+                </p>
+                <p class="code">
+                    {
+                        "parserOptions": {
+                          "ecmaVersion": 2018
+                        },
+                        "extends": [
+                          "eslint:recommended",
+                          "prettier"
+                        ],
+                        "env": {
+                          "es6": true,
+                          "node": true,
+                          "jest": true
+                        },
+                        "rules": {
+                          "no-console": "warn"
+                        }
+                      }
+                </p>
+                </li>
+                <li>
+                <h3>
+                Package.json
+            </h3>
+            <ol>                <p>
+                Vamos a levantar un enotrno de  desarrollo y produccion.
+                Para esto escribimos dentro de la configuracion de los comandos de scripts:
+                </p>
+                <li>
+                    empezamos con el entorno de desarrollo:
+                    <p class="code">
+                        "dev": "nodemon index.js"
+                    </p>
+                </li>
+                <li>
+                    el entorno de produccion:
+                    <p>
+                        escribimos dentro de los comandos de scripts:
+                    </p>
+                    <p class="code">
+                        "start": "node index.js"
+                    </p>
+                </li>
+                <li>
+                   correr linter:
+                    <p>
+                        escribimos dentro de los comandos de scripts:
+                    </p>
+                    <p class="code">
+                        "lint": "eslint"
+                    </p>
+                </li>
+            </ol>
+        </li>
+        </ol>
+        </li>
+    </ul>
+    <strong>
+        Finalmente para que todo esto funcione tenemos que instalar nuestras dependencias de desarrollo, lo hacemos ejecutando en la consola el siguiente comando:
+        <p class="comando">
+            npm i nodemon eslint eslint-config-prettier eslint-plugin-prettier prettier -D
+        </p>
+        </strong>
+        finalmente podemos probar que esten listas nuestras dependencias ejecutando los comandos:
+        <p class="comando">
+            npm run dev
+        </p> <p class="comando">
+            npm run start
+        </p>
     </p>
+    <hr>
+    <p>
+        Instalamos la extension de google chrome json viewer para poder leer de una forma más amigable las paginas que vienen en formato json 
+    </p>
+    <hr>
+    <h2>¿Que son las REST API?</h2>
+    <p>
+        Es una conveccion que se refiere a servicios web por protocolo HTTP
+    </p>
+    <p>
+        METODOS:
+    </p>
+    <ul>
+        <li>
+            Get: obtener.<br>
+            normalmente se usa para obtener una informacion o solicitar una informacion, por ejemplo los productos que esten en una base de datos.
+        </li>
+        <li>
+            Put: Modificar/Actualizar. <br>
+            Normalmente trabaja sobre modificaciones
+        </li>
+        <li>
+            Patch: Modifivar/Actualizar
+        </li>
+        <li>
+            Post: Crear <br>
+            Post es para hacer la creacion
+        </li>
+        <li>
+            Delete: Eliminar
+        </li>
+    </ul>
+    <h4>
+        Patch
+    </h4>
+    <p>
+        Patch
+El método de solicitud HTTP PATCH aplica modificaciones parciales a un recurso. </p><p>
+
+PATCH es algo análogo al concepto de “actualización” que se encuentra en CRUD, Una solicitud se considera un conjunto de instrucciones sobre cómo modificar un recurso. Contrasta esto con PUT; que es una representación completa de un recurso.</p><p>PATCH
+
+Mo es necesariamente idempotente, aunque puede serlo. Contrasta esto con PUT; que siempre es idempotente.</p><p>
+
+La palabra “idempotente” significa que cualquier número de solicitudes repetidas e idénticas dejará el recurso en el mismo estado.</p><p>
+
+Por ejemplo, si un campo de contador de incremento automático es una parte integral del recurso, entonces un PUT lo sobrescribirá naturalmente (ya que sobrescribe todo), pero no necesariamente para .PATCH
+
+PATCH (como POST) puede tener efectos secundarios sobre otros recursos.</p><p>
+
+PATCH - HTTP | MDN
+    </p>
+    <img style="width: 350px" src="https://i.pinimg.com/originals/2b/95/0c/2b950cd6415ec385bb64bf0156f486f7.jpg" alt="Tabla de como funcionan los metodos y como hirian en los entrypoints y endpoints">
+    <p>
+        Recordando como funciona los metodos, la convencion de REST API nos dice que por cada entidad vamos a tener una ruta o endpoint con el nombre de la entidad y luego nosotros podriamos tener tambien un id que es opcional, pero deberiamos tener un identificador unico para los productos en este caso de uso, no importa si es una base de datos relacional o no relacional.
+        <p>Get: se puede hacer un Get por ids y obtener tabla de lista de productos</p>
+    <p>PUT: se lo utiliza el REPLACE individualmente por productos, esto quiere decir que es aconsejable modificar un producto a la vez, si podemos hacer modificaciones en masa pero no es buena practica</p>
+    <p>PATCH: funciona de la misma manera pero puedo hacer modificaciones más detalladas</p>
+    <p>POST: no aplica ID, por que nos sirve para crear y no se a creado el id aún</p>
+    <p>DELETE: se puede hacer en masa pero no es aconsejable, se utiliza para borrar</p>
+    </p>
+</main>
 </body>
 </html>
