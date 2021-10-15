@@ -407,8 +407,81 @@ PATCH - HTTP | MDN
     <p>
         <hr>
     <div>
-        
+        <h2>Instalacion de postman</h2>
+        <p>Para poder probar nuestra API de forma más productiva vamos a tener que usar algún cliente de APIs que nos permita hacer las pruebas de funcionamiento de lo que estás construyendo, los dos clientes más famosos son Insomnia y Postman y vas a necesitar de alguno de ellos para ir probando cada característica que vamos a ir construyendo en nuestro servicio de Platzi Store.</p>
+        <p>Insomnia
+            Como cliente para probar APIs tiene grandes características, destaca principalmente por una interfaz limpia y sencilla, pero a la vez potente, en donde puede configurar ambientes, exportar e importar, gran soporte con GraphQL, etc. Insomnia será el que vamos a usar en este curso 🙂</p>
+            <p>Instalación
+                La instalación es sencilla, solo tienes que ingresar a <a href="https://insomnia.rest/download"> https://insomnia.rest/download </a> y descargar el instalador. Una vez esté descargado lo ejecutas y sigues los pasos de la instalación; en caso de Windows descarga un archivo .exe, en caso de Mac descarga un .dmg, y finalmente, en caso de Ubuntu descargas el .deb.</p>
+    </div></p>
+    <hr>
+    <div>
+        <h3>Manejo de versionados:</h3>
+        <p>
+            <img src="https://i.pinimg.com/564x/25/72/14/257214668369af1fa8d1c1ac9b193826.jpg" alt="">
+        </p>
     </div>
+    <hr>
+    <div>
+        <h2>
+            necesitamos un cliente para hacer un post, vamos a usar Insomnia
+        </h2>
+        <ol>
+            <li>
+                Abrimos insomnia, hacemos click derecho y seleccionamos New Request(empezamos creando un request collection antes).
+            </li>
+            <li>
+                le ponemos en este caso el nombre de Get Productos.
+            </li>
+            <li>
+                en la barra insertamos nuestra direccion URL en la que vamos a trabajar, y le damos click en send.
+                <p>
+                    <img src="https://i.pinimg.com/564x/60/54/b9/6054b9e42ba41098cb47db02aab05a59.jpg" alt="">
+                </p>
+            </li>
+            <li>
+                vamos de nuevo a crear un nuevo request pero vamos a utilizar un nuevo metodo. en este caso Post, lo llamaremos Create product.
+            </li>
+            <li>
+                Vamos al mismo EndPoint, le decimos que queremos enviar en formato JSON. y creamos el cuerpo:
+                <p><img src="https://i.pinimg.com/originals/d6/ef/2f/d6ef2fb942106e0e4f5a44eba3f17ca4.jpg" alt=""></p>
+                Nos sale un error 404, pero ya lo esperabamos por que no hemos creado el metodo que atienda el metodo post, dentro de los metodos de producto.
+            </li>
+            <li>
+                Creamos el metodo post:
+                <p><img src="https://i.pinimg.com/originals/de/80/95/de8095697d964ea5fae7ead6dbefa48e.jpg" alt=""></p>
+                y lo volvemos a probar:
+                <p>
+                    <img src="https://i.pinimg.com/originals/7e/4e/7f/7e4e7fd097f4f7344e987bc147bc0373.jpg" alt="">
+                </p>
+                pero nos lanza un error 200, y no nos lanza el body o el atributo data, por que nos falta implementar un Middleware.
+                <p>"El término middleware se refiere a un sistema de software que ofrece servicios y funciones comunes para las aplicaciones. En general, el middleware se encarga de las tareas de gestión de datos, servicios de aplicaciones, mensajería, autenticación y gestión de API.                    ⠀⠀⠀
+                    Ayuda a los desarrolladores a diseñar aplicaciones con mayor eficiencia. Además, actúa como hilo conductor entre las aplicaciones, los datos y los usuarios.</p>
+                    <p>fuente: https://www.redhat.com/es/topics/middleware/what-is-middleware"</p></p>
+            </li>
+            <li>
+                Implementamos el middleware nativo que tiene express. con el codigo en el index.js del proyecto.
+                <p class="code">app.use(express.json());</p>
+                <img src="https://i.pinimg.com/originals/cb/cd/8a/cbcd8a440bd05269542615cce43d0cd2.jpg" alt=""><br>
+                probamos y...
+                <p><img src="https://i.pinimg.com/originals/8f/41/d1/8f41d1a50343f02656e31b449450dd17.jpg" alt=""></p>
+                Perfecto!!! nos llego la informacion
+            </li>
+        </ol>
+        </div>
+        <hr>
+        <div>
+            <h2>PUT, PATCH Y DELETE</h2>
+            para usar estos metodos necesitamos un id
+            <p><strong>PUT: </strong>tenemos para PUT en el rato de usarlo y actualizar la informamcion de nuestros "productos" llenar todos los atributos de este producto.</p>
+            <p><img src="https://i.pinimg.com/originals/4c/66/d4/4c66d4dac06c874f2313442ed3309fd4.jpg" alt=""></p>
+            <p><strong>PATCH: </strong>Me permite hacer una modificacion parcial del producto, esto quiere decir que puedo actualizar informacion de los atributos que yp quiera cambiar por ejemplo solo el nombre, o solo el precio.</p>
+            <p><img src="https://i.pinimg.com/originals/d1/ca/08/d1ca08556528809373b25959cf467288.jpg" alt="añadiendo metodo de patch para actualizar informacion total o parcial de cada producto"></p>
+            añadiendo metodo de patch para actualizar informacion total o parcial de cada producto, ahora lo probaremos en nuestro cliente o insonmia:
+            <p><img src="https://i.pinimg.com/originals/a2/f1/52/a2f152ad3dc23f1931d33eea5283fa59.jpg" alt=""></p>
+            <p><strong>DELETE: </strong> En este caso se lo implemetaria de igual manera, con la diferencia que no necesitariamos el body, solo un identificador que identifique al producto y lo elimine.</p>
+            <img src="https://i.pinimg.com/originals/d7/41/21/d7412149255e368f24e7fa4eb5b58a60.jpg" alt="">
+        </div>
     </p>
 </p>
 </main>
