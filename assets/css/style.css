@@ -1,0 +1,29 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+html {
+    font-size: 62,5%;
+    font-family: Verdana;
+    color: #24292f;
+}
+body {
+ width: 100%;
+}
+body h1, h2, h3, h4, h5, h6, hr, img {
+    margin: 10px;
+}
+header {
+    font-size: 1.3rem;
+    display: flex;
+    justify-content:space-between;
+    flex-wrap: wrap;
+    align-items: center;
+}
+header a {
+    margin: 10px;
+}
+main {
+    margin: 20px 50px;
+}
