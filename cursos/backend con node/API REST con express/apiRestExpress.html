@@ -5,8 +5,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>API Rest con Express</title>
+    <link rel="stylesheet" href="../../../assets/css/style.css">
 </head>
 <body>
+    <header>
+        <a href="../../../index.html">Anotaciones</a>
+        <section>
+            <a href="./apiRestExpress2.html">Hoja 2</a>
+        </section>
+    </header>
     <main>
         <p>
     <h1>
@@ -482,7 +489,26 @@ PATCH - HTTP | MDN
             <p><strong>DELETE: </strong> En este caso se lo implemetaria de igual manera, con la diferencia que no necesitariamos el body, solo un identificador que identifique al producto y lo elimine.</p>
             <img src="https://i.pinimg.com/originals/d7/41/21/d7412149255e368f24e7fa4eb5b58a60.jpg" alt="">
         </div>
+        <hr>
+        <div>
+            <h2>Status Code</h2>
+            siguiendo la convencion que nos propone REST,  es manegar un buen Status Code. <strong>Status Code</strong> es un estandar que nos permite saber que paso con la solicitud, siendo el más común el 404 NOT FOUND, cuando encontramos un recurso que el servidor no pudo encontrar o el más aterrador o desastrozo que es un error 500 donde el servidor por algún lado se rompio.
+            <br><a href="https://developer.mozilla.org/en-US/docs/Web/HTTP">Pagina de mozilla sobre http</a><br>
+            <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Status">Pagina sobre http response Status Code</a><br>
+            <a href="https://http.cat/">Ejemplificaciones divertidas con gatos </a>
+            <h3>¿Como implementar el status code?</h3>
+            <p>en el caso de Post lo implementamos y probamos así:</p>
+            <img src="https://i.pinimg.com/originals/2d/7f/e6/2d7fe6d8c6b80d09b6f3e284163799bd.jpg" alt="">
+            <p>En el caso de GET:</p>
+            <img src="https://i.pinimg.com/originals/8a/34/38/8a343886753e1c4f6fde2cb2265894c2.jpg" alt="">
+            <p>en el caso que get sea un 404</p>
+            <img src="https://i.pinimg.com/originals/84/a0/7f/84a07ff57f50564b1a08744dab47f763.jpg" alt="">
+        </div>
+        <hr>
     </p>
+    <div>
+        <a href="./apiRestExpress2.html">Segunda Parte del Curso => Servicios, Middlewares y deployment</a>
+    </div>
 </p>
 </main>
 </body>
