@@ -22,6 +22,167 @@
         <p><a href="https://platzi.com/clases/backend-nodejs/">Link del curso </a></p>
             <a href="https://luchomorla.github.io/anotaciones/cursos/backend%20con%20node/API%20REST%20con%20express/apiRestExpress.html">link del repositorio</a>
     </section>
+    <section>
+        <div>
+            <h2>
+                Servicios
+            </h2>
+            <p>
+               En los servicios es donde empezamos a encapsular toda la logica del negocio, o Aplicacion. 
+            </p>
+            <picture>
+                <img src="https://i.pinimg.com/originals/05/a1/ac/05a1ac7ea0efd8d885ff9a0beb827e8b.jpg" alt="the clean architecture">
+                <p><strong>The Clean architecture</strong> es una arquitectura definida por capas:</p>
+                <ol>
+                    <li>
+                        <p><strong>Entidades: </strong>Es donde encontramos las entidades base de nuestra arquitectura, como entidad de productos, categorias, usuarios.</p>
+                    </li>
+                    <li>
+                        <p><strong>Casos de Uso: </strong>Es donde tenemos todo lo relacionado a la logica de negocio. es donde se encuentran los <strong>Servicios.</strong></p>
+                    </li>
+                    <li><p><strong>Controladores: </strong>Estos son los que brindan acceso, es donde encontramos a todo el <strong>Routing</strong></p></li>
+                </ol>
+                <img src="https://i.pinimg.com/originals/ec/82/70/ec82705945ce7e5763e5eb0b5ec5e2c0.jpg" alt="">
+                <p>Los controladores donde encontramos el routing y los middlewares, luego => tenemos a los servicios, donde se encuentra toda la logica de negocio y son los que usan a las librerias, => las librerias se encargan de conectarse a esta capa de entidades y a otras fuentes de datos como API externas o otras bases de datos</p>
+            </picture>
+            <h3>Separando la logica del negocio, implementando los Servicios</h3>
+            <div>
+                <ol>
+                    <li>Empezaremos por crear carpeta para los servicios</li>
+                    <li>Creamos nuestro servicio: productServices.js, en este momento empezamos con la programacion orientada a objetos (POO)</li>
+                    <li>Empezamos a definir toda la logica a nivel transaccional que van a tener nuestros datos, aquí vamos a gestionar todo lo de los productos como crear, editar, etc, entonces vamos a implementar esas funcionalidades.</li>
+                    <li>Creamos las funcionalidades:
+                        <p>
+                            <img src="https://i.pinimg.com/originals/c2/d4/bf/c2d4bf0bb5395da1c1af723cb9b490dc.jpg" alt="">
+                        </p>
+                        En este caso no vamos a conectar a una base de datos, esto se lo hará en otro curso, creamos los metodos delete, el metodo constructor y otro metodo generate, donde vamos a ultizar la data fake que habíamos usado anteriormente.
+                    </li>
+                    <li>
+                        Cortamos y pegamos la funcion donde utilizamos faker para generar productos falsos y llenamos los campos de los metodos:
+                        <p><img src="https://i.pinimg.com/originals/2c/fa/3a/2cfa3afee48f7d4a26b6dd44e6abafdb.jpg" alt=""></p>
+                    </li>
+                    <li>
+                        En el Router nos traemos el servicio con las siguientes lineas de codigo(vamos a requerir el servicio de productos, luego creamos la instancia de la clase y finalmente establecemos el route donde indicamos que nos traiga el array de productos que creamos en la clase ProductsService):
+                        <p><img src="https://i.pinimg.com/originals/1c/d9/a0/1cd9a0eadc91f45111c11453e0db333d.jpg" alt=""></p>
+                    </li>
+                    <li>
+                        creamos el atributo id (dentro de generate, dentro del this.products.push({})), y le decimos que cree un string muy largo de forma randomica (uuid()):
+                        <p class="code">id: faker.datatype.uuid(),</p>
+                        luego en el metodo findOne(), le agregamos el parametro id y manipulamos los array para que encuentre el item id y le de el valor de id.
+                        <p><img src="https://i.pinimg.com/originals/ac/8c/08/ac8c08600e16a9c7e5f429beccf847fc.jpg" alt=""></p>
+                    </li>
+                    <li>
+                        Ahora en el Routing vamos a cambiar la ruta que recibe el parametro id, eliminamos el codigo anterior y vamos a escribir este nuevo codigo, un poco más inteligente.
+                        <p><img src="https://i.pinimg.com/originals/86/a6/89/86a6891c3ba1ec45b74e3e81c082ff96.jpg" alt=""></p>
+                        <img src="https://i.pinimg.com/originals/4f/68/d1/4f68d12a27a1f8cd85b6a50d5c9c328e.jpg" alt="">
+                    </li>
+                    <li>
+                        finalmente podemos probar en el cliente nuestra aplicacion, vamos a ver que tiene un id y que el id si lo buscamos en el url va a encontrar el producto por su id, además, como esta vez utilizamos el constructor, los productos quedan guardados en memoria RAM 
+                        <p><img src="https://i.pinimg.com/originals/7e/c6/48/7ec648706b671a843c93befe9ef76f8e.jpg" alt=""></p>
+                        <p><img src="https://i.pinimg.com/originals/d9/f2/4e/d9f24eb0126dfdda4973883558600564.jpg" alt=""></p>
+                    </li>
+                </ol>
+            </div>
+            <hr>
+            <div>
+                <h2>Create, Update & delete</h2>
+            <p>Vamos a crear, actualizar y eliminar utilizando la capa de servicios, con la ventaja que ya tenemos un tipo de persistencia, que es la persistencia en memoria. </p>
+            <h3>Create</h3>
+            <ol>
+                <li>
+                    ingresamos el parametro data y las instrucciones que necesita nuestro metodo create.
+                <p><img src="https://i.pinimg.com/originals/a0/15/b9/a015b993b95ff4e98a29d09f5e6bc7ae.jpg" alt=""></p>
+                </li>
+                <li>
+                    Vamos a nuestro post de productsRouting.js y lo reconfiguramos para que ejecute el metodo create, con la data que le enviamos y para que cree un id automaticamente.
+                    <p><img src="https://i.pinimg.com/originals/7f/f1/fa/7ff1fa6e557442b08789fc5d0b8b6207.jpg" alt=""></p>
+                </li>
+                <li>
+                    probamos que funcione llendonos a post y creando el producto, vamos a crear un producto que cuesta 500
+                    <p><img src="https://i.pinimg.com/originals/e0/19/d9/e019d913b8d2fc58879dabc417f82ad8.jpg" alt=""></p>
+                </li>
+                <li>
+                    verificamos que se halla creado viendo en la lista de productos, antes de eso le volvemos a hacer request/send para que se actualize la lista.
+                    <p><img src="https://i.pinimg.com/originals/70/5c/af/705cafca697bd7327f7cc16c9b005914.jpg" alt=""></p>
+                </li>
+                perfecto se guardo el producto en memoria, dentro del array de productos en el constructor.
+            </ol>
+            <h3>Update/Actualizar</h3>
+            <ol>
+                <li>
+                    ingresamos los parametros id, changes y las instrucciones que necesita nuestro metodo create.
+                    <p><img src="https://i.pinimg.com/originals/9c/fc/68/9cfc68a246a24c57383590b4d08d9801.jpg" alt=""></p>
+                </li>
+                <li>
+                    Luego en el routing configuramos para que utilice la capa de servicios:
+                    <p><img src="https://i.pinimg.com/originals/b5/b2/b6/b5b2b6197e01067f0b97925e308609b8.jpg" alt=""></p>
+                </li>
+                <li>
+                    Pero al hacer la prueba resulta que al actualizar el producto elimina el resto de la informacion, dejando solo la informacion que actualizamos:
+                    <p><img src="https://i.pinimg.com/originals/e7/93/79/e793793f316ad2296a6da43840e91d04.jpg" alt=""></p>
+                    <img src="https://i.pinimg.com/originals/8c/32/b0/8c32b053ffec4755ba30559a9320b633.jpg" alt="">
+                </li>
+                <li>
+                    Vamos a corregir esto, adicionando el siguiente codigo:
+                    <p><img src="https://i.pinimg.com/originals/36/fa/91/36fa91c86e20a7b88c6dc996dbc5a234.jpg" alt=""></p>
+                </li>
+                <li>
+                    volvemos a probar:
+                    <p><img src="https://i.pinimg.com/originals/94/d4/f6/94d4f66c36925dcfb7a1b2053ee4f63e.jpg" alt=""></p>
+                    <img src="https://i.pinimg.com/originals/65/29/00/652900c5d67f54352bd790f9224918bb.jpg" alt="">
+                </li>
+                Excelente!!! *0*
+            </ol>
+            <h3>Delete</h3>
+            <ol>
+                <li>
+                    Agrego la siguite linea de codigo:
+                    <p><img src="https://i.pinimg.com/originals/61/b0/75/61b075648690a356ba2e59c5abbd7b4f.jpg" alt=""></p>
+                </li>
+                <li>
+                    reconfiguramos en el routing para que utilice los servicios
+                    <p><img src="https://i.pinimg.com/originals/18/ee/51/18ee51001aaeec7a32ce359a936036ad.jpg" alt=""></p>
+                </li>
+                <li>
+                    probamos que el producto se elimine en el listado que tenemos: <br>
+                    verificamos existencia:
+                    <p><img src="https://i.pinimg.com/originals/51/e2/3b/51e23b455c3faf2ddeca3eb19600d277.jpg" alt=""></p>
+                    eliminamos el producto:
+                    <p><img src="https://i.pinimg.com/originals/c0/8b/e6/c08be62c4d60c9e752b3e730fd572652.jpg" alt=""></p>
+                </li>
+            </ol>
+            </div>
+            <hr>
+            <div>
+                <h2>Async, await y captura de errores</h2>
+                <p>Hasta ahora hemos corrido Node de forma syncrona, y es bueno pero esto en la web o en la coneccion con bases de Datos puede ser un problema debido al delay(demora) de coneccion. Entonces debemos saber como manejar asyncronismo en los servicios.</p>
+                <p>Vamos a añadir el async a todos los metodos, por el momento los vamos a agregar sin el await pero en el routing si vamos a usar el async y await de forma completa. lo vamos a dejar así para tenerlo preparado en el futuro.</p>
+                <img src="https://i.pinimg.com/originals/16/2d/24/162d2478286b0384d807dd3b616abbc8.jpg" alt="">
+                <img src="https://i.pinimg.com/originals/4f/99/3f/4f993f4e0f340ccc70467d915dca5340.jpg " alt="">
+                <p>Captura de errores:</p>
+                <img src="https://i.pinimg.com/originals/90/cd/2b/90cd2b7674385a72b12e06b263c51195.jpg" alt="">
+            </div>
+            <hr>
+        </div>
+        <div>
+            <h2>Middlewares</h2>
+        <p>Middleware es software que permite uno o más tipos de comunicación o conectividad entre dos o más aplicaciones o componentes de aplicaciones en una red distribuida. Al facilitar la conexión de aplicaciones que no fueron diseñadas para conectarse entre sí, y al brindar funcionalidad para conectarlas de manera inteligente, el middleware agiliza el desarrollo de aplicaciones y acelera el tiempo de comercialización.</p>
+        <br>
+        <p>Estos estan en medio del request y el response, osea que cada vez que por ejemplo en routing en el momento del callback, recibimos un request y un response, esto quiere decir que casi todo lo que colocamos en ese callback, es un middleware</p>
+        <img src="https://i.pinimg.com/originals/1e/e2/04/1ee20449d90ed3f0fefec1ef5369847a.jpg" alt="">
+        <p>Pueden funcionar de forma secuencial, quiere decir que yo tengo varios middlewares y despues corra otro y hacer una cadena de middlewares, por ejemplo: el primer valide logica de autentificacion, en el segundo podria validar la data, en el tercero ahcer otra cosa</p>
+            <img src="https://i.pinimg.com/originals/4f/d7/af/4fd7afb20537b2640ab8d8b3a6d50f51.jpg" alt="">
+           <p> esto quiere decir que uno de estos middlewares puede bloquear la ejecucion de esta otra, por ejemplo si ese usuario en especifico no tuviera el permiso necesario para aceder a esa informacion:
+        </p><img src="https://i.pinimg.com/originals/24/0f/8e/240f8e889a7a540bc13fd311e15a9e91.jpg" alt="">
+        <p>Esta son la clase más común de middlewares, pero hay otro tipo de middlewares que se ejecutan de otras formas:</p>
+        <img style="width: 450px;" src="https://i.pinimg.com/originals/31/42/64/3142649784375871be900cae26b6a2bf.jpg" alt="">
+        <img style="width: 450px;" src="https://i.pinimg.com/originals/1c/38/06/1c3806567167e63b4ffa7b964e8cc408.jpg" alt="">
+        <p>Tenemos los siguientes casos de uso</p>
+        <img src="https://i.pinimg.com/originals/d6/47/58/d647589e86f13d32039879a5a2fda471.jpg" alt="">
+        <p>¿Que es un pipe? Las pipes también llamadas tuberías o filtros son funciones que se llaman en una vista (html) y que tienen por objetivo transformar un dato a mostrar para mejorar la experiencia del usuario.</p>
+        </div>
+        <hr>
+    </section>
     </main>
 </body>
 </html>
