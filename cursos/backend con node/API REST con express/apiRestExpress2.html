@@ -163,6 +163,12 @@
                 <img src="https://i.pinimg.com/originals/90/cd/2b/90cd2b7674385a72b12e06b263c51195.jpg" alt="">
             </div>
             <hr>
+            <div>
+              <h6>Spread</h6> 
+              <p><strong>Sintáxis</strong>La sintaxis extendida o spread syntax permite a un elemento iterable tal como un arreglo o cadena ser expandido en lugares donde cero o más argumentos (para llamadas de  función) o elementos (para Array literales) son esperados, o a un objeto ser expandido en lugares donde cero o más pares de valores clave (para literales Tipo Objeto) son esperados.</p>
+              <a href="https://developer.mozilla.org/es/docs/Web/JavaScript/Reference/Operators/Spread_syntax">sintáxis Spread</a>
+            </div>
+            <hr>
         </div>
         <div>
             <h2>Middlewares</h2>
@@ -182,6 +188,24 @@
         <p>¿Que es un pipe? Las pipes también llamadas tuberías o filtros son funciones que se llaman en una vista (html) y que tienen por objetivo transformar un dato a mostrar para mejorar la experiencia del usuario.</p>
         </div>
         <hr>
+        <div>
+            <h3>Middleware for errors</h3>
+            vamos a crear un middleware que actue de forma global, para que capture los errores y formatearlo de una manera adecuada para devolverlo a nuestro cliente
+            <h4>¿como haremos el middleware global para errores?</h4>
+            <0l>
+                <li>
+                    Vamos a crear un nueva carpeta y un nuevo archivo llamado midlewares y errorHandler.js
+                </li>
+                <li>
+                    Creamos la funcion con la que vamos a logear el error, Es importante acotar que en los parametros agregemos el err, y el next y al final ejecutemos la funcion next enviandole el err como parametro para que Node entienda que estamos ejecutando un middleware de tipo error.
+                    <img src="https://i.pinimg.com/originals/5a/92/6e/5a926e4513d527c705816036f3962536.jpg" alt="">
+                </li>
+                <li>
+                    Creamos otra funcion que va a crear y enviar el formato para que le enviemos el error a nuestro cliente:
+                    <img src="https://i.pinimg.com/originals/cc/69/7f/cc697f4895a9a14ef76eacc6f8b24710.jpg" alt="">
+                </li>
+            </0l>
+        </div>
     </section>
     </main>
 </body>
