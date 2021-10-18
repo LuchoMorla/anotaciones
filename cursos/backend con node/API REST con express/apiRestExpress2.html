@@ -189,10 +189,10 @@
         </div>
         <hr>
         <div>
-            <h3>Middleware for errors</h3>
+            <h3>Middleware for errors(httpErrors)</h3>
             vamos a crear un middleware que actue de forma global, para que capture los errores y formatearlo de una manera adecuada para devolverlo a nuestro cliente
             <h4>¿como haremos el middleware global para errores?</h4>
-            <0l>
+            <ol>
                 <li>
                     Vamos a crear un nueva carpeta y un nuevo archivo llamado midlewares y errorHandler.js
                 </li>
@@ -203,8 +203,28 @@
                 <li>
                     Creamos otra funcion que va a crear y enviar el formato para que le enviemos el error a nuestro cliente:
                     <img src="https://i.pinimg.com/originals/cc/69/7f/cc697f4895a9a14ef76eacc6f8b24710.jpg" alt="">
+                    <p>Recuerda que aún así no estes utilizando next, tiene que agregarlo como parametro para que Node entienda que estas trabajando con un Middleware de correccion de Errores</p>
                 </li>
-            </0l>
+                <li>
+                    Vamos a importar nuestras funciones al index.js <br>
+                    <img src="https://i.pinimg.com/originals/cc/23/2d/cc232ded90b549a9c678bea13dc25d2d.jpg" alt="">
+                    <p>Los Middlewares del tipo error se deben crear despues de haber establecido el routing de nuestra aplicacion</p>
+                </li>
+                <li>
+                    <p>Le decimos a la aplicacion que use los middlewares, tenemos que tener mucha delicadeza con el orden en que llamamos a los middlewares, para que se ejecuten en el orden de cadena correcto, ya que en el orden que se ejecuten las lineas sera el orden en el que se ejecuten uno de tras del otro</p>
+                    <img src="https://i.pinimg.com/originals/9e/f0/ad/9ef0ad30e3564e5aeafacc76a245f400.jpg" alt="">
+                </li>
+                <li>
+                    <p>Finalmente debemos tambien capturar el error de una forma explicita desde el routing:</p>
+                    <p>Establecemos a next tambien como parametro de la funcion, utilizamos un try y catch para caprturar el error y finalmente declaramos la funcion next(error) para que los middlewares ejecuten</p>
+                    <img src="https://i.pinimg.com/originals/e3/55/33/e35533de2b500f48da9c18527e089af1.jpg" alt="">
+                </li>
+                lo hemos hecho bien, con excepcion que estamos incurriendo en una mala practica al enviar el error 500, cuando deberiamos utilizar otra clase de status code D: :0
+            </ol>
+        </div>
+        <hr>
+        <div>
+
         </div>
     </section>
     </main>
