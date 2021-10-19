@@ -273,6 +273,97 @@
                 </li>
             </ol>
         </div>
+        <hr>
+        <h6>Destructuring</h6>
+        <p>es destructurando el objeto o sacando solo que necesitamos de el, ya que lo anterior nos retorna un objeto con {} de decimos que solo nos traiga la propiedad error del objeto.</p>
+        <p>es una forma de acceder al valor o atributo de un objeto, por ejemplo podemos eso decir:</p>
+        <p>que tenemos un objeto con el siguiente valor: { value: {}, error: '"username" is required' }</p>
+        <p class="code">const {error} = schema.validate(data);</p>
+        <p>Es lo mismo que decir:</p>
+        <p class="code">const error = schema.validate(data).error;</p>
+        <hr>
+        <div>
+            <h2>Validación de Datos</h2>
+            <p>Middlewares para validar los datos, validar los datos que me estan enviando desde el cliente,si yo tengo una bibliotecta ya sea angular o react, ellos nos envian la información a la API, pero nosotros como Backend deberiamos decirle que cumple con la integridad de datos requerida para poder insertar eso a una base de datos.</p>
+            <p>Vamos a ver como podemos hacer esta validacion de datos, para esto vamos a utilizar una libreria llamada joi</p>
+            <ol>
+                <li>
+                    <p>Empezamos por instalar la libreria <a href="https://joi.dev/">Joi</a></p>
+                    <p class="comando">npm i joi</p>
+                </li>
+                <li>
+                    creamos la carpeta de schemas.
+                    <p>Podemos llamarlos schemas o tambien podemos llamarlo Dtos</p>
+                </li>
+                <li>
+                    creamos el archivo productSchemas.js
+                </li>
+                <li>
+                    importamos la libreria con el require
+                </li>
+                <li>
+                    <p>Haremos un schema especidfico para cada campo, eso nos va a ayudar a reutilizar mucho mejor el codigo y para poder reutilizar ese codigo, ademas que simplifica la creacion.</p>
+                    <p>Debemos empezar por el tipo de campo que es por ejemplo:(string()) y luego la validacion:(uuid())</p>
+                    <img src="https://i.pinimg.com/originals/01/94/9c/01949c59b7ae4890183aecd4b77b928f.jpg" alt="">
+                </li>
+                <li>
+                  <p> escribimos nuestro codigo para los metodos y le indicamos cuales son requeridos y cuales no....</p>
+                  <img src="https://i.pinimg.com/originals/e2/f3/1e/e2f31ef91bc7f592d9956b1a8c19c9f3.jpg" alt="">
+                </li>
+                <li>
+                    <p>Vamos a crear un middleware para realizar estas validaciones, empezaremos por crear en la carpeta de middlewares el archivo validatorHandler.js</p>
+                </li>
+                <li>
+                    esto ya seria un middleware normal que solo tendria los parametros: req, res, next u otros.
+                    <p>vamos a configurar un middleware que sea dinamico, por eso vamos a recibir el schema y la propiedad, luego vamos a crear un closure o dicho de otra forma vamos a retornar una funcion:</p>
+                    <img src="https://i.pinimg.com/originals/c3/3f/0a/c33f0ad4a698e83b00149b243c182e0a.jpg" alt="">
+                </li>
+            </ol>
+        </div>
+        <div>
+           <p> ya hemos creado toda la esturctura de nuestro middleware de validacion de datos con joi, ahora vamos a aprender a aplicarlo y ver como se Utiliza:</p>
+           <p>Vamos a ver como se utiliza</p>
+           <ol>
+               <li>
+                   vamos a las rutas donde estan los metodos de request y response. Abrimos productRouter.js
+               </li>
+               <li>
+               <p> importamos a validatorHandler y a productSchemas</p>
+               <img src="https://i.pinimg.com/originals/77/76/a3/7776a3dd5cb1d48848cd1e6e98daa37b.jpg" alt="">
+               </li>
+               <li>
+                 <p> Antes de ejecutar el middleware asyncrono con el que conectamos al servicio, vamos a ejecutar los middlewares de validacion de datos, si todo sale bien correra el next y ejecutara el middleware de servicio o routing</p>
+                 <p>Dentro de los parametros como habiamos puesto en el validatorhandler le indicamos que schema vamos a usar en dichos flujos y donde se encuentra la informacion(la propiedad)</p>
+                 <img src="https://i.pinimg.com/originals/8f/77/85/8f7785cc044dd4c3f1f33f4bcf008482.jpg" alt="">
+                 <p>¿que tal si tengo más propiedades y me toca agregarla a las dos? simplemente lo concatenamos o ejecutamos el siguiente middleware</p>
+                 <img src="https://i.pinimg.com/originals/65/8f/2e/658f2e5c1038061c1c6655568ad67d82.jpg" alt="">
+               </li>
+               <li>
+                 <p>  Podriamos probar nuestra validacion y vamos a ver que si enviamos a crear un producto con un nombre de más de un caracter nos muestra un error, eso fue por que nosotros lo programamos para que acepte solo nombres alfa-numericos </p>
+                 <img src="https://i.pinimg.com/originals/8c/d9/bd/8cd9bd88c89d4d8fa3a05916e44de576.jpg" alt="">
+               </li>
+               <li>
+                   <p>Le vamos a eliminar la validacion de caracter alfa numerico y vamos a crear una nueva constante para tambien validar imagenes en productSchema</p>
+                   <img src="https://i.pinimg.com/originals/ef/e0/ba/efe0ba73daa504728d4cb884a0e4cc47.jpg" alt="">
+               </li>
+               <li>
+                   <p>
+                       Vamos a poner en el metodo de crear productos que la imagen sea requerida pero no para actualizar los productos. En productSchema
+                   </p>
+                   <img src="https://i.pinimg.com/originals/f3/56/1a/f3561a3f42a2ae3e124b57b317b91687.jpg" alt="">
+               </li>
+               <li>
+                   <p>El otro problema es que cuando hay más de un error, nos imprime un solo error de validacion, esto es molesto y frustrante para nuestris clientes, entonces vamos a configurar a Joi para que impriman todos los errores de validacion de golpe y el cliente sepa todo lo que tiene que corregir antes de volver a enviar una peticion</p>
+                   <p>Lo haremos adicionando al validate un objeto que le diga al atributo abortEarly que no aborte cuanto antes, que aborte despues de verificar todos los datos</p>
+                   <img src="https://i.pinimg.com/originals/93/b2/9a/93b29a7b56c16651f37c1377f4a9cf5f.jpg" alt="">
+               </li>
+               <li>
+                   <p>Y listo ya valida todo en conjunto y de forma correcta</p>
+                   <img src="https://i.pinimg.com/originals/85/14/62/851462735c1352cdd13e7b82d3bedc62.jpg" alt="">
+               </li>
+           </ol>
+        </div>
+        <hr>
     </section>
     </main>
 </body>
