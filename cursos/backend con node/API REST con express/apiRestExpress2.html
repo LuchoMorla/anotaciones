@@ -224,7 +224,54 @@
         </div>
         <hr>
         <div>
-
+            <h3>Manejo de errores con Boom</h3>
+            <p>Nos va a permitir hacer el manejo o manipulacion de errores pero respetando el status code</p>
+            <p>¿Como implementarla?</p>
+            <ol>
+                <li>
+                    <p>Ejecutamos el comando npm para instalar Boom</p>
+                    <p class="comando">npm i @hapi/boom</p>
+                </li>
+                <li>
+                    <p>Como lo vamos a necesitar en nuestro archivo de servicio, vamos a requerir la dependencia en el archivo productService.js</p>
+                    <p class="code">const boom = require('@hapi/boom');</p>
+                </li>
+                <li>
+                    <p>
+                        cambiamos nuestra forma de manipular los errores dentro del codigo.
+                    </p>
+                    <img src="https://i.pinimg.com/originals/e7/f6/1d/e7f61d6b97414023b9daa1490b0eabdb.jpg" alt="">
+                </li>
+                <li>
+                    <p>Tenemos que crear un middleware ya que boom maneja los errores de una forma diferente, para esto nos vamos al archivo de middleware errors, aprovechando que cuando el sistema genera un error con boom automaticamente le agrega una propiedad llamada isBoom</p>
+                    <img src="https://i.pinimg.com/originals/3f/73/98/3f7398ff44b57a0941b608806eae9fb3.jpg" alt="">
+                    <p>si no es un error del tipo boom ejecutara el siguiente middleware</p>
+                </li>
+                <li>
+                    vamos a importar la libreria tambien en el routing para ejecutarla
+                    <p class="code">const { logErrors, erroHandler, boomErrorHandler } = require('...DIreccion/archivoMiddlewareforErrors');</p>
+                </li>
+                <li>
+                    <p>Ahora lo empezamos a usar dentro de la cadena de middlewares:</p>
+                    <img src="https://i.pinimg.com/originals/9f/5a/98/9f5a986de2663cef0f4a9079f854c3e3.jpg" alt="">
+                </li>
+                <li>
+                   <p> vamos a probar enviando la peticion de un producto que no existe:</p>
+                    <img src="https://i.pinimg.com/originals/73/21/df/7321df2d3849d1094d25b2cad454fc44.jpg" alt="">
+                </li>
+                <li>
+                    <p>Podemos crear un nuevo atributo de producto para bloquear algunos productos y otros no de forma random y bloquear algunos productos y otros no</p>
+                    <img src="https://i.pinimg.com/originals/62/ba/3f/62ba3f68bdb6bd6020047e2b76e2d3cf.jpg" alt="">
+                </li>
+                <li>
+                    <p>Agregando un error de logica de negocio, tipo conflicto</p>
+                    <img src="https://i.pinimg.com/originals/ee/ed/e3/eeede3dd44fee5de5e6fc5c7a7a3541e.jpg" alt="">
+                </li>
+                <li>
+                   <p>Excelente ahora podemos consultar por un producto que si exista pero que se encuentre bloqueado</p>
+                   <img src="https://i.pinimg.com/originals/30/c9/84/30c9845efbda869115f6eed64aaa6d6f.jpg" alt="">
+                </li>
+            </ol>
         </div>
     </section>
     </main>
