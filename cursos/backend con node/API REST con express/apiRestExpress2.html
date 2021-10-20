@@ -364,6 +364,90 @@
            </ol>
         </div>
         <hr>
+        <div>
+            <h3>Middlewares populares en Express.js</h3>
+            <p>A continuación te compartiré una lista de los middlewares más populares en Express.</p>
+
+                <h5>CORS</h5>
+               <p> Middleware para habilitar CORS (Cross-origin resource sharing) en nuestras rutas o aplicación. <a href="http://expressjs.com/en/resources/middleware/cors.html"> http://expressjs.com/en/resources/middleware/cors.html</a></p>
+                
+                <h5>Morgan</h5>
+                <p> Un logger de solicitudes HTTP para Node.js. <a href="http://expressjs.com/en/resources/middleware/morgan.html"> http://expressjs.com/en/resources/middleware/morgan.html</a></p>
+                
+                <h5>Helmet</h5>
+                <p> Helmet nos ayuda a proteger nuestras aplicaciones Express configurando varios encabezados HTTP. ¡No es a prueba de balas de plata, pero puede ayudar! <a href="https://github.com/helmetjs/helmet"> https://github.com/helmetjs/helmet</a></p>
+                
+                <h5>Express Debug</h5>
+                <p> Nos permite hacer debugging de nuestras aplicaciones en Express mediante el uso de un toolbar en la pagina cuando las estamos desarrollando.<a href="https://github.com/devoidfury/express-debug"> https://github.com/devoidfury/express-debug</a></p>
+                
+                <h5>Express Slash</h5>
+                <p> Este middleware nos permite evitar preocuparnos por escribir las rutas con o sin slash al final de ellas.<a href="https://github.com/ericf/express-slash"> https://github.com/ericf/express-slash</a></p>
+                
+                <h5>Passport</h5>
+                <p> Passport es un middleware que nos permite establecer diferentes estrategias de autenticación a nuestras aplicaciones. <a href="https://github.com/jaredhanson/passport"> https://github.com/jaredhanson/passport</a></p>
+                
+                 <p>Puedes encontrar más middlewares populares en el siguiente enlace: <a href="http://expressjs.com/en/resources/middleware.html"> http://expressjs.com/en/resources/middleware.html</a></p>
+        </div>
+        <hr>
+        <div>
+            <h2>Produccion</h2>
+            <p>Estamos a punto de llevar nuestro sitio a produccion, pero hay que tomar en cuenta unas cuantas consideraciones.... <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS">Como el CORS=>Cross-Origin Resource Sharing</a></p>
+            <img style="width: 400px;" src="https://i.pinimg.com/originals/dd/78/9c/dd789c17aa2fc741abf4eb0dba7b98ed.jpg" alt="">
+            <ul>
+                <li>
+                    <strong>  Evaluar los CORS:</strong>
+                    <p>a quienes les damos acceso para atender solicitudes</p>
+                </li>
+                <li>
+                    <strong>  Que nuestra API este sobre un servidor que sea https </strong>
+                    <p>por que esta cifrado, en cambio en http cualquiera podria tener acceso a nuestra informacion de una manera sencilla</p>
+                </li>
+                <li>
+                    <strong>  Tener procesos de BUILD</strong>
+                    <p>esto tiene más que ver con cosas que tienen que procesar una informacion, por ejemplo typescript que tiene que pasarse a javascript o sass... si tienes algun proceso de building deberias trabajarlo y verificar que funcione bien antes de ponerlo a trabajar en produccion</p>
+                </li>
+                <li>
+                    <strong> Remover Logs</strong> 
+                    <p>No es bueno tener logs, no es bueno tener logs en produccion, incluso esto aveces puede hacer demorar la aplicacion, se puede utilizar sarcentry o datalog para capturar todo esto en produccion</p>
+                </li>
+                <li>
+                    <strong>  Seguridad</strong>
+                    <p>Es importantisimo trabajar la seguridad desde el principio, Helmet es una colleccion de middlewares que ya ponen algunas capas de seguridad a tu aplicacion de Node</p>
+                </li>
+                <li>
+                  <strong> Testing: Pruebas Unitarias</strong> 
+                    <p>tenemos que hacer pruebas unitarias o pruebas de integracion antes de subir nuestra aplicacion</p>
+                </li>
+            </ul>
+            <h3>CORS</h3>
+            <p>hasta ahora hemos probado haciendo peticiones desde el mismo origen, y por eso no habia problema con recibir las peticiones hechas, pero que tal si la peticion viene desde un origen diferente? el servidor automaticamente las va a rechazar</p>
+            <img style="width: 400px;" src="https://i.pinimg.com/originals/2e/cc/96/2ecc962c342d7863c877326ce961edb9.jpg" alt="">
+            <p>Pero que tal si necesitamos empezar a usar subdominios, otros dominios e incluso applicaciones mobile => android o !os? son applicaciones que tienen un origen diferente</p>
+            <img style="width: 400px;" src="https://i.pinimg.com/originals/d1/85/63/d185634166dd7bc1c5eb81e986abd968.jpg" alt="">
+            <p>Por defecto nuestro Backend rechazara estas peticiones de origenes diferentes</p>
+            <h4>entonces... ¿como configuramos nuestros puertos u origenes de acceso para los dominios?</h4>
+            <ol>
+                <li>
+                    <img style="width: 350px;" src="https://i.pinimg.com/originals/2a/d2/75/2ad275c1a0714cf30f9f5a585d2cb1b0.jpg" alt="">
+                    <p>Sí, hay un modulo llamado CORS para dar esta solucion, y lo instalamos con el comando:</p>
+                    <p class="comando">npm i cors</p>
+                    <p>Esta libreria funciona como un middleware</p>
+                </li>
+                <li>
+                    No me quedo muy claro, te invito a <a href="https://platzi.com/clases/2485-backend-nodejs/41764-problema-de-cors/">ver de nuevo la clase.</a>
+                </li>
+            </ol>
+            </div>
+            <hr>
+            <div>
+                <h2>Deployment</h2>
+                <p>Vamos a desplegar nuestro sitioweb dentro de los servidores de Heroku</p>
+                <ol>
+                    <li>
+
+                    </li>
+                </ol>
+            </div>
     </section>
     </main>
 </body>
