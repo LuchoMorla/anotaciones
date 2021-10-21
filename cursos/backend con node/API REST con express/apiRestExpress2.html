@@ -434,17 +434,87 @@
                     <p>Esta libreria funciona como un middleware</p>
                 </li>
                 <li>
-                    No me quedo muy claro, te invito a <a href="https://platzi.com/clases/2485-backend-nodejs/41764-problema-de-cors/">ver de nuevo la clase.</a>
+                    <p>Lo requerimos en el index donde esta el routing y vamos a configurar, const cors = require('cors');</p>
+                </li>
+                <li>
+                    y luego lo ejecutamos:
+                    <p class="code">app.use(cors());</p>
+                    <p>Pero si lo dejamos así, la applicacion aceptaria cualquier origen</p>
+                </li>
+                <li>
+                  <p>  entonces creamos un array como nuestra whitelist con nuestros dominios y origenes permitidos, además una constante llamado options con un objeto que tenga un atributo origin que ejecute una funcion flecha o arrow function que ejecute una validacion que vea si el origen esta incluido en el whitelist, y que en caso de no serlo lanze un error </p>
+                  <img src="https://i.pinimg.com/originals/89/21/65/8921651d20b5f1bb83cd383aec3be121.jpg" alt="">
+                <p>  no olvidemos de enviar como parametro al atributo options</p>
+                </li>
+                <li>
+                    aunque siento que no me quedo muy claro eso seria todo
                 </li>
             </ol>
             </div>
             <hr>
             <div>
                 <h2>Deployment</h2>
-                <p>Vamos a desplegar nuestro sitioweb dentro de los servidores de Heroku</p>
+                <p>Vamos a desplegar nuestro sitioweb dentro de los servidores de <strong> <a href="https://www.heroku.com/">Heroku</a></strong></p>
                 <ol>
                     <li>
-
+                        instalamos Heroku
+                        <p>Si estamos en linux nos pueden servir y nos es recomendado los siguientes comandos:</p>
+                        <p class="comando"> curl https://cli-assets.heroku.com/install.sh | sh</p>
+                        <p class="comando">heroku login</p>
+                        <p class="comando">heroku create</p>
+                        <p class="comando">git remote -v</p>
+                        <br>
+                        <p>Si no tambien podemos ingresar a la pagina oficial, registrarnos o logiarnos e ir a la documentacion oficial para instalar el asistenete de comandos</p>
+                    </li>
+                    <li>
+                        ya habiendo ingresado a <a href="https://www.heroku.com/">Heroku</a>,
+                        le damos clic a documentation y luego a ger start.
+                        <p>FInalmente le das click o copias el comando que te dan, este caso hare click en el boton de windows 64-bit installer</p>
+                        <p>Si estas en ubuntu puedes instalarlo con el siguiente comando</p>
+                        <p class="comando">sudo snap install --classic heroku</p>
+                        <p>Si estas en macOS puedes instalarlo con el siguiente comando</p>
+                        <p class="comando">brew tap heroku/brew && brew install heroku</p>
+                    </li>
+                    <li>
+                        luego de haber instalado heroku en nuestros sistemas, y hecho loggin(aunque no importa por que te va a pedir que des click en un link para loggearte autoamticamente) vamos a la carpeta de la aplicacion y ejecutamos el siguiente comando:
+                        <p class="comando">heroku create</p>
+                        <img src="https://i.pinimg.com/originals/d7/05/81/d70581295fe15a7eeb23b20723bce614.jpg" alt="">
+                    </li>
+                    <li>
+                        <p>Despues de haber hecho esto, Heroku va a crear un repositorio de Git, lo puedes verificar ejecutando el comando:</p>
+                        <p class="comando">git remote -v</p>
+                        <p>Con esto vamos a poder ir haciendo commits y automaticamente va a haber un deployment por que como viste ahora hay dos origenes, tambien nos da una url de nuestro proyecto</p>
+                        <p><a href="https://frozen-eyrie-22132.herokuapp.com/">https://frozen-eyrie-22132.herokuapp.com/</a></p>
+                       <p> y si vas a tu dhasboard de heroku podras ver tu app</p>
+                    </li>
+                    <li>
+                        <p>como dice en este <a href="https://devcenter.heroku.com/articles/getting-started-with-nodejs">link</a> En nuestro package.json debemos especificar que version de node queremos correr en neustra aplicacion, agregando la siguiente linea de codigo</p>
+                    <img src="https://i.pinimg.com/originals/2f/e8/b7/2fe8b75d8c29c0a546fd5014c11941ae.jpg" alt="">
+                    </li>
+                    <li>
+                        <p>Podemos correr en un entorno de heroku local desde nuestra compu antes de problarlo de forma remota en el servidor con el comando:</p>
+                        <p class="comando">heroku local web</p>
+                    </li>
+                    <li>
+                        <p>hacemos cambios en los CORS de nuestro sitio y en el puerto para que se asigne un puerto de forma automamtica o que escoga un puerto especifico 3000 y a la vez para que acepte las peticiones del puerto local</p>
+                        <img src="https://i.pinimg.com/originals/47/b5/c3/47b5c3e22892168a1499a552ad446cfe.jpg" alt="">
+                    </li>
+                    <li>
+                       <p>dentro de los archivos de nuestro proyecto creamos el archivo procfile, este archivo no va a llenar ningun punto ni formato por que ya lo coge por defecto, en el cual le vamos a indicar como queremos que heroku lance el proyecto, seria lo mismo de especificarle el comando que debemos darle para que corrra o el script</p>
+                       <p>en este caso le especificaremos que corra el script npm run start, que en nuestro pakage.json es node index.js</p> 
+                       <p>con este comando correremos nuestra aplicacion directamente a produccion</p>
+                       <img src="https://i.pinimg.com/originals/5a/de/f5/5adef51982719551122f9692d327eedf.jpg" alt="">
+                    </li>
+                    <li>
+                    <p>   Llego el momento esperado, ya podemos hacer nuestro deploy y lo haremos haciendo un push a nuestro repositorio de heroku, así automaticamente se hara el deployment debido</p>
+                    <p class="comando">git push heroku main</p>
+                    <img src="https://i.pinimg.com/originals/7a/65/6b/7a656b5a3e76529000fddb184e396e41.jpg" alt="">
+                    </li>
+                    <li>
+                       <p> bien, al correr exitosamente el comando anterior, ya esta hecho el deployment, y te envia un link con el dominio de tu aplicacion, si gustas puedes despues ir a settings de tu app en el dashboard de heroku y prosonalizar tu propio dominio.</p>
+                    <p>En este caso nuestro dominio es: <a href="https://vast-temple-37338.herokuapp.com/">https://vast-temple-37338.herokuapp.com/</a>
+                    entramos y guala!!! tenemos nuestra aplicacion corriendo exitosamente</p>
+                    <img src="https://i.pinimg.com/originals/20/ef/f7/20eff7b928a4c70a34cfb5388daa0c11.jpg" alt="">
                     </li>
                 </ol>
             </div>
