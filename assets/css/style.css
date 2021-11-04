@@ -9,7 +9,7 @@ html {
     color: #24292f;
 }
 body {
- width: 100%;
+ margin: 30px;
 }
 body h1, h2, h3, h4, h5, h6, hr, img {
     margin: 10px;

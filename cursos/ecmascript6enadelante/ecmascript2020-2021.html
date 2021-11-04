@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ecmascript11</title>
+    <link rel="stylesheet" href="../../../assets/css/style.css">
+</head>
+<body>
+    <header>
+        <a href="../../../index.html">Anotaciones</a>
+        <section>
+            <p><a href="https://platzi.com/clases/ecmascript-6/">Link de el curso de ECMASCRIPT</a></p>
+        </section>
+    </header>
+    <main>
+        <section>
+        <h1>Ecmascript11</h1>
+            <div>
+                <h2>Dinamic Import</h2>
+                <p>Esta nueva caracteristica nos va a permitir llamar elementos de forma dinamica, para poder llamar piezas de codigo que nos van a permitir optimizar nuestro proyecto.</p>
+                <p>Consiste en importar desde el html modulos de forma sencilla</p>
+                <img src="https://i.pinimg.com/originals/38/71/31/3871317720e19fab0bf452531fd98c1b.jpg" alt="">
+                <p>Habiendo llamado al archivo index.js, lo configuramos para que cuando  se desate el evento click, importe el modulo file.js</p>
+                <img src="https://i.pinimg.com/originals/8a/0d/74/8a0d74373c14fee28a17659237016461.jpg" alt="">
+                <p>el archivo file.js es una funcion que nos va a lanzar un console.log()</p>
+                <img src="https://i.pinimg.com/originals/52/d6/cf/52d6cf3e0cc29dbcee6ae8b5c481737d.jpg" alt="">
+            </div>
+            <div>
+                <h2>Big int</h2>
+                <p>Reutilizaremos los archivos html e index.js</p>
+                <img src="https://i.pinimg.com/originals/38/71/31/3871317720e19fab0bf452531fd98c1b.jpg" alt="">
+                <img src="https://i.pinimg.com/originals/8a/0d/74/8a0d74373c14fee28a17659237016461.jpg" alt="">
+                <p>Hay dos formas de utilizar esto, una es añadiendo una n al numero que quiero darle este formato o la otra es introduciendola como parametro de un metodo llamado BigInt();</p>
+                <img src="https://i.pinimg.com/originals/4f/d0/af/4fd0afceea9c047b9f91ffffad7421b8.jpg" alt="">
+            </div>
+            <div>
+                <h2>Promise all Settled</h2>
+                <p>La cual nos va a devolver una promesa que se resuelve despues que todas las promesas dadas se hayan cumplido o rechazado en una serie de objetos que se describe el resultado de cada promesa</p>
+                <img src="https://i.pinimg.com/originals/9e/c9/42/9ec9424003be6fff4a0cfe4814899770.jpg" alt="">
+            </div>
+            <div>
+                <h2>globalThis</h2>
+                <p>es como utilizar window pero dentro de node para el backend, de esta manera tenemos acceso a los elementos globales, así nos permite trabajar un worker o trabajar con diferentes opciones</p>
+                <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/globalThis">Mozila developer document</a>
+            </div>
+            <div>
+                <h2>Nullish coalescing operator</h2>
+                <p>operador de Nulo, es un operador logico que nos devuelve su operando del lado derecho cuando el operador del lado izquierdo es nulo o indefinido, y de lo contrario nos devuelve el operador de lado izquierdo</p>
+                <p class="code"> const devuelveDefault = null ?? 'default string';</p>
+                <p class="code">const devuelve_asd = 'asd' ?? 'default string';</p>
+                <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Nullish_coalescing_operator">Mozila developer document</a>
+            </div>
+            <div>
+                <h2>optional_chaining</h2>
+                <p>arreglos, objetos y acceder a los metodos nos ayuda mucho chaining con el cual vamos a poder trabajar diferentes niveles de estos recursos</p>
+                <p>al tratar de acceder a estos puedo yo preguntar si existen, esto no rompera mi aplicacion, en caso de no poder acceder a la data me va a lanzar un undefined</p>
+                <img src="https://i.pinimg.com/originals/33/99/e8/3399e8f4c1668d4ff645aa40371f0001.jpg" alt=""><br>
+                <img src="https://i.pinimg.com/originals/3b/54/fa/3b54fa96398695c66c63f688d089a6e7.jpg" alt=""><br>
+                <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Optional_chaining">Mozila developer document</a>
+            </div>
+        </section>
+        <section>
+            <h1>Ecmascript12</h1>
+            <p class="code"> <br>
+                // 🧯 Replace <br>
+                <br>
+                const string = "JavaScript es maravilloso, con JavaScript puedo crear el futuro de la web.";<br>
+                const replacedString = string.replace("JavaScript", "Python");<br>
+                console.log(replacedString);<br>
+                <br>
+                //// Output: Python es maravilloso, con JavaScript puedo crear el futuro de la web. <br>
+                <br>
+                const replacedString2 = string.replaceAll("JavaScript", "Python");<br>
+                console.log(replacedString2);<br>
+                <br>
+                //// Output: Python es maravilloso, con Python puedo crear el futuro de la web.<br>
+                <br>
+                // 🔒 Metodos privados<br>
+                class Message {<br>
+                    #show(val){ // Con el # convertimos al método en privado<br>
+                        console.log(val);<br>
+                    };<br>
+                };<br>
+                <br>
+                const message = new Message();<br>
+                message.show('Hola!');<br>
+                <br>
+                //  👽 Promise Any<br>
+                <br>
+                const promise1 = new Promise((resolve, reject) => reject("1"));<br>
+                const promise2 = new Promise((resolve, reject) => resolve("2"));<br>
+                const promise3 = new Promise((resolve, reject) => resolve("3"));<br>
+                <br>
+                Promise.any([promise1, promise2, promise3])<br>
+                .then(response => console.log(response)); <br>
+                <p>// nos devolvio solo el primer valor en resolverse <br>
+                Output: 2</p>
+                                    <br>
+                
+                //  🦴 WeakRef(element);<br>
+                <br>
+                class AnyClass {<br>
+                    constructor(element){<br>
+                        this.ref = new WeakRef(element);<br>
+                    }<br>
+                    {...}<br>
+                }<br>
+                <p>// así evitamos que la memoria borre los elementos que vamos a utilizar</p>
+                <br>
+                // 🧪 Nuevos operadores lógicos<br>
+                <br>
+                let isTrue = true;<br>
+                let isFalse = false;<br>
+                console.log(isTrue &&= isFalse);<br>
+                <br>
+                let isTrue = true;<br>
+                let isFalse = false;<br>
+                console.log(isTrue ||= isFalse);<br>
+                <br>
+                let isTrue = true;<br>
+                let isFalse = false;<br>
+                console.log(isTrue &&= isFalse);<br>
+            </p>
+        </section>
+        <a href="https://tc39.es/">enlace de Ecma International's TC39(ECMASCRIPT)</a>
+    </main>
+</body>
+</html>
